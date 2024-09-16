@@ -1,0 +1,35 @@
+body{font-family:DM Mono,monospace;font-size:small;height:100%;display:flex;justify-content:center;flex-direction:column}
+header,main,footer{margin:2em;text-align:center}
+footer img{opacity:.3};
+.brand{text-decoration:none;text-transform:uppercase;padding-right:2rem}
+.brand img{height:.6rem}
+.login{font-size:12px}
+header a{color:inherit}
+
+.upload__droparea{
+	border:2px dotted gainsboro;padding:2rem;
+	margin-right:1rem;margin-bottom:1rem;
+	text-align:center}
+.upload__droparea.hover,
+.upload__droparea:hover{border-color:gray}
+.upload__add{margin:1rem 0 0 0;display:inline-block}
+.upload__add{border:1px solid #777;cursor:default}
+.upload__add,
+.upload__droparea small{font-size:12px}
+.upload__add div{padding:.3rem .7rem}
+
+.upload__image{float:left;position:relative;
+	width:192px;height:215px;cursor:move}
+.upload__image:hover a{display:inline;text-decoration:none}
+.upload__image__caption input[type=text]{width:146px;
+	padding:4px 30px 4px 4px;margin:0;font-size:12px}
+.upload__image__wrap{
+	background:#fff url(./img/upload-spinner.gif) 50% 50% no-repeat;
+	width:182px;height:182px;text-align:center;overflow:hidden}
+
+.upload__progress_bar{position:absolute;top:130px;left:10px;width:162px;
+	    background:rgba(255,255,255,0.3);display:none}
+.upload__progress_bar,
+.upload__progress_bar i{height:5px;border:1px solid #aaa}
+.upload__progress_bar i{border-width:0 1px 0 0;
+	background:#ddf0ff;display:block;width:0}

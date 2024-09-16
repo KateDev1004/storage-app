@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Safe  Demo</title>
+    <link rel="stylesheet" href="upload.css">
+</head>
+<body>
+    <header>
+        <a class="brand" href='/'>
+            <img src="https://docs.bittensor.com/img/logo.svg" alt="τ" />
+            File Safe</a>
+        <span class="login">login with your
+            <a href="https://bittensor.com/wallet">Bittensor wallet</a></span>
+    </header>
+    <main>
+        <form id="upload_form" enctype="multipart/form-data" action="#" method="post">
+        <div id="up" class="upload">
+            <div id="droparea" class="upload__droparea">
+                <div class="upload__droparea__label">
+                    Drop your files here
+                </div>
+                <div id="add" class="upload__add">
+                    <div>or add files from your device</div>
+                </div>
+                <input type="file" name="file" id="file" multiple style="display:none">
+            </div>
+            <div id="upload_list">
+                <!-- Uploaded files will be shown here
+                <figure>
+                    <a href="{{ f.url }}"><img src="{{ thumb }}" alt="{{ f.alt }}" /></a>
+                    <figcaption>{{ f.alt }}</figcaption>
+                </figure>-->
+            </div>
+        </div>
+        </form>
+    </main>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
+    <script src="upload.js"></script>
+</body>
+</html>
