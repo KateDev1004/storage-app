@@ -18,8 +18,8 @@ var Up = {
             <img class="upload__file__thumb" src="#thumb#">
         </div>
         <div>
-            <label class="upload__delete" title="Mark for deletion.">
-                &times; <input type="checkbox" name="delete">
+            <label class="upload__delete" title="Mark for deletion">
+                &times; <input type="checkbox" name="delete" id="deleteSUFFIX">
             </label>
         </div>
         <div class="upload__file__caption"><input type="text" name="altSUFFIX"></div>
@@ -48,8 +48,18 @@ var Up = {
 		form.id = id;
 		list.appendChild(form);
 		sortable_uploads();
+		Up.setup_delete(ID("delete"+total));
 		return id;
 	},
+	setup_delete: function(btn) {
+        btn.addEventListener('change', function() {
+            if (this.checked) {
+                var fileDiv = this.closest('.upload__file');
+                fileDiv.parentNode.removeChild(fileDiv);
+                // handle server-side deletion
+            }
+        });
+    },
 	fill_form: function(id, xhr_response){
 		var data = JSON.parse(xhr_response); // safe source
 		var box = ID(id);
@@ -114,7 +124,7 @@ var Up = {
                 var wrap = ID(id).querySelector('.upload__file__wrap');
                 var extEl = document.createElement('div');
                 extEl.className = 'upload__file__ext';
-                extEl.textContent = '.'+ext; // Display extension
+                if(file.name.includes('.')) extEl.textContent = '.' + ext; // Show extension
                 wrap.appendChild(extEl);
             }
             // prefill caption field with the filename
@@ -149,10 +159,6 @@ var Up = {
 			for(var i=rm.length;i--;){rm[i].parentNode.removeChild(rm[i]);}
 		}
 		if(Up.tests.filereader){
-			d.onclick = function(e){
-				e.preventDefault();
-				file.click();
-			}
 			file.onchange = function(e){
 				Up.read(e.target.files);
 			}
@@ -182,3 +188,19 @@ document.addEventListener('readystatechange', function(){
 		sortable_uploads();
 	}
 }, false);
+
+
+function handleDelete() {
+    var deleteButtons = document.querySelectorAll('.upload__delete input[name="delete"]');
+
+    deleteButtons.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                var fileDiv = this.closest('.upload__file');
+                fileDiv.parentNode.removeChild(fileDiv);
+                // Additional logic for deleting the file from the server can be added here
+            }
+        });
+    });
+}
+

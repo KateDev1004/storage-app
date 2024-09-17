@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Safe</title>
+    <title>File safe</title>
+    <style>
+    body{font-family:DM Mono,monospace;font-size:small;height:100%;display:flex;justify-content:center;flex-direction:column}
+    header,main,footer{margin:2em;text-align:center}
+    header .brand{text-decoration:none;text-transform:uppercase;padding-right:3rem;font-weight:500}
+    header .login{font-size:12px}
+    header a{color:inherit}
+    .upload__droparea{border:2px dashed silver;padding:4rem;margin-right:1rem;margin-bottom:1rem;text-align:center}
+    .upload__add label{display:inline-block;margin-top:1rem;padding:.3rem .7rem;border:1px solid #777;cursor:pointer;font-size:12px}
+    </style>
     <link rel="stylesheet" href="upload.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text x='50%' y='50%' font-size='48' text-anchor='middle' dy='.3em'>🔐</text></svg>">
+    <!--link rel="icon" type="image/svg+xml" href="https://docs.bittensor.com/img/logo.svg"-->
 </head>
 <body>
     <header>
         <a class="brand" href="#">
-            <img src="https://docs.bittensor.com/img/logo.svg" alt="τ" />
-            File Safe</a>
-        <span class="login">login with your
+            🔐 File Safe</a>
+        <span class="login">login with
+            <img src="https://docs.bittensor.com/img/logo.svg" alt="τ" width="9" height="9" />
             <a href="https://bittensor.com/wallet">Bittensor wallet</a></span>
     </header>
     <main>
@@ -22,9 +33,11 @@
                     Drop your files here
                 </div>
                 <div id="add" class="upload__add">
-                    <div>or add files from your device</div>
+                    <label for="file">
+                        or add files from your device
+                        <input type="file" name="file" id="file" multiple style="display:none">
+                    </label>
                 </div>
-                <input type="file" name="file" id="file" multiple style="display:none">
             </div>
             <div id="upload_list">
                 <!-- Uploaded files will be shown here

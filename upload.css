@@ -1,21 +1,5 @@
-body{font-family:DM Mono,monospace;font-size:small;height:100%;display:flex;justify-content:center;flex-direction:column}
-header,main,footer{margin:2em;text-align:center}
-header .brand{text-decoration:none;text-transform:uppercase;padding-right:2rem;font-weight:500}
-header .brand img{height:.6rem}
-header .login{font-size:12px}
-header a{color:inherit}
-
-.upload__droparea{
-	border:2px dashed silver;padding:4rem;
-	margin-right:1rem;margin-bottom:1rem;
-	text-align:center}
 .upload__droparea.hover,
 .upload__droparea:hover{border-color:gray}
-.upload__add{margin:1rem 0 0 0;display:inline-block}
-.upload__add{border:1px solid #777;cursor:default}
-.upload__add,
-.upload__droparea small{font-size:12px}
-.upload__add div{padding:.3rem .7rem}
 
 .upload__file{float:left;position:relative;
 	width:192px;height:215px;cursor:move}
