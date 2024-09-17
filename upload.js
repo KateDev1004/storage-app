@@ -10,7 +10,7 @@ function N1(t,e) {
 var Up = {
 	// configurable URL of the file upload handler
     // {'id': 1, 'url': 'https:...'}
-	url: '',
+	url: '/upload',
 	// configurable HTML template to render each uploaded file
 	form_tpl: `<div class="upload__file">
         <div class="upload__file__wrap">
@@ -33,15 +33,8 @@ var Up = {
 		filereader: typeof FileReader != 'undefined',
 		// is drag and drop supported
 		dnd: 'draggable' in document.createElement('span'),
-		formdata: !!window.FormData,
 		// will progress bars work
-		progress: "upload" in new XMLHttpRequest,
-		// is file input supported at all (not on < iOS4)
-		fileinput: function(){
-			var test = document.createElement("input");
-			test.setAttribute("type", "file");
-			return test.disabled === false;
-		}
+		progress: "upload" in new XMLHttpRequest
 	},
 	// handle adding file forms to a formset
 	add_form: function(i){
@@ -54,7 +47,6 @@ var Up = {
 		form = tmp.firstChild;
 		form.id = id;
 		list.appendChild(form);
-		total.value = parseInt(total, 10) + 1;
 		sortable_uploads();
 		return id;
 	},
@@ -65,10 +57,9 @@ var Up = {
 		img.src = data.url;
 		ID('id'+id).value = data.id;
 	},
-	post: function(i, data){
+	post: function(i, data, id){
 		return function(){
 			var xhr = new XMLHttpRequest();
-			var id = Up.add_form();
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState==4){
 					if(xhr.responseText=='error' || xhr.responseText=='small'){
@@ -102,11 +93,15 @@ var Up = {
 	read: function(files){
 		var qs = [];
 		for(var i=0; i < files.length; i++){
-			if(Up.tests.formdata){
-				var data = new FormData();
-				data.append('file', files[i]);
-				qs[i] = Up.post(i, data);
-			}
+		    var file = files[i];
+            var data = new FormData();
+            data.append('file', file);
+            var id = Up.add_form();
+            // Fill the filename into the altSUFFIX field
+            console.log('#'+id+' .upload__file__caption input');
+            console.log(file.name);
+            document.querySelector('#'+id+' .upload__file__caption input').value = file.name;
+            qs[i] = Up.post(i, data, id);
 		}
 		for(var j=0; j < qs.length; j++){
 			qs[j](); // run requests
@@ -131,7 +126,7 @@ var Up = {
 				Up.read(e.dataTransfer.files);
 			}
 		}
-		if(Up.tests.filereader || !Up.tests.fileinput()){
+		if(Up.tests.filereader){
 			var rm = document.getElementsByClassName('upload__fallback');
 			for(var i=rm.length;i--;){rm[i].parentNode.removeChild(rm[i]);}
 		}

@@ -23,7 +23,7 @@ header a{color:inherit}
 .upload__file__caption input[type=text]{width:146px;
 	padding:4px 30px 4px 4px;margin:0;font-size:12px}
 .upload__file__wrap{
-	background:#fff url(./img/upload-spinner.gif) 50% 50% no-repeat;
+	background:#fff url(upload-spinner.gif) 50% 50% no-repeat;
 	width:182px;height:182px;text-align:center;overflow:hidden}
 .upload__delete{position:absolute;right:7px;top:7px;color:gray;font-size:20px}
 .upload__delete input{display:none}
