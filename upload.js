@@ -12,19 +12,19 @@ var Up = {
     // {'id': 1, 'url': 'https:...'}
 	url: '',
 	// configurable HTML template to render each uploaded file
-	form_tpl: `<div class="upload_image">
-        <div class="upload__image__wrap">
+	form_tpl: `<div class="upload__file">
+        <div class="upload__file__wrap">
             <span class="upload__progress_bar"><i></i></span>
-            <img class="upload__image__thumb" src="#thumb#">
+            <img class="upload__file__thumb" src="#thumb#">
         </div>
         <div>
-            <label class="upload__tools__delete" title="Mark for deletion.">
+            <label class="upload__delete" title="Mark for deletion.">
                 &times; <input type="checkbox" name="delete">
             </label>
         </div>
-        <div class="upload__image__caption"><input type="text" name="alt*suffix"></div>
-        <input type="hidden" name="pos*suffix">
-        <input type="hidden" name="id*suffix">
+        <div class="upload__file__caption"><input type="text" name="altSUFFIX"></div>
+        <input type="hidden" name="posSUFFIX">
+        <input type="hidden" name="idSUFFIX">
     </div>
     `,
 	// device and browser capability tests
@@ -46,16 +46,15 @@ var Up = {
 	// handle adding file forms to a formset
 	add_form: function(i){
 		var list = ID('upload_list');
-		var total = document.querySelectorAll('input[name$="pos"]').length;
-		var suffix = '*suffix';
-		var form = Up.form_tpl.replace(/__suffix__/g, total.value),
-			id = suffix + total.value + '-',
+		var total = document.querySelectorAll('input[name="delete"]').length;
+		var form = Up.form_tpl.replace(/SUFFIX/g, total),
+			id = 'id' + total,
 			tmp = document.createElement('div');
 		tmp.innerHTML = form;
 		form = tmp.firstChild;
 		form.id = id;
 		list.appendChild(form);
-		total.value = parseInt(total.value, 10) + 1;
+		total.value = parseInt(total, 10) + 1;
 		sortable_uploads();
 		return id;
 	},
@@ -64,17 +63,7 @@ var Up = {
 		var box = ID(id);
 		var img = N1('img', box);
 		img.src = data.url;
-		ID(id+'id').value = data.id;
-		var tools = box.getElementsByTagName('a');
-		var toolbox = box.querySelector('.upload__tools');
-		// show tools
-		toolbox.className = toolbox.className.replace(' hide', '');
-		for(var i=0; i<tools.length; i++){
-			var e = tools[i];
-			if(e.href.indexOf('/0') > -1){
-				e.href = e.href.replace('/0', '/'+data.id);
-			};
-		}
+		ID('id'+id).value = data.id;
 	},
 	post: function(i, data){
 		return function(){
@@ -86,14 +75,7 @@ var Up = {
 						var box = ID(id);
 						box.parentNode.removeChild(box);
 					}
-					if(xhr.responseText=='error'){
-						alert('Upload a valid image. The file uploaded was '+
-						'either not an image or corrupted. See FAQ for hints.');
-					} else if(xhr.responseText=='small'){
-						alert('Too small. Upload a larger image.');
-					} else {
-						Up.fill_form(id, xhr.responseText);
-					}
+					console.log(xhr.responseText);
 				}
 			};
 			// Progress bar
@@ -169,7 +151,7 @@ var Up = {
 function sortable_uploads(){
     var list = ID("upload_list");
     Sortable.create(list, {
-        draggable: '.upload__image',
+        draggable: '.upload__file',
         onUpdate: function(evt){
             var inputs = document.querySelectorAll('input[name$="pos"]');
 			for(var i=inputs.length; i--;){
@@ -187,5 +169,3 @@ document.addEventListener('readystatechange', function(){
 		sortable_uploads();
 	}
 }, false);
-
-// Brendan Eich.. Your mother was a hamster and your father smells of elderberries!!
