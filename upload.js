@@ -97,9 +97,27 @@ var Up = {
             var data = new FormData();
             data.append('file', file);
             var id = Up.add_form();
-            // Fill the filename into the altSUFFIX field
-            console.log('#'+id+' .upload__file__caption input');
-            console.log(file.name);
+            if (file.type.startsWith('image/')) {
+                var reader = new FileReader();
+                reader.onload = (function(id) {
+                    return function(e) {
+                        var img = N1('img', ID(id)); // Get the thumbnail image element
+                        img.src = e.target.result;   // Set the src to the file's data URL
+                    };
+                })(id);
+                reader.readAsDataURL(file);
+            } else {
+                // For non-image files, display the file extension instead of the thumbnail
+                var ext = file.name.split('.').pop().toUpperCase(); // Get the file extension
+                var img = N1('img', ID(id));
+                img.style.display = 'none';
+                var wrap = ID(id).querySelector('.upload__file__wrap');
+                var extEl = document.createElement('div');
+                extEl.className = 'upload__file__ext';
+                extEl.textContent = '.'+ext; // Display extension
+                wrap.appendChild(extEl);
+            }
+            // prefill caption field with the filename
             document.querySelector('#'+id+' .upload__file__caption input').value = file.name;
             qs[i] = Up.post(i, data, id);
 		}

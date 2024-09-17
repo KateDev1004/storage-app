@@ -6,7 +6,7 @@ header .login{font-size:12px}
 header a{color:inherit}
 
 .upload__droparea{
-	border:2px dotted gainsboro;padding:4rem;
+	border:2px dashed silver;padding:4rem;
 	margin-right:1rem;margin-bottom:1rem;
 	text-align:center}
 .upload__droparea.hover,
@@ -20,13 +20,16 @@ header a{color:inherit}
 .upload__file{float:left;position:relative;
 	width:192px;height:215px;cursor:move}
 .upload__file:hover a{display:inline;text-decoration:none}
-.upload__file__caption input[type=text]{width:146px;
+.upload__file__thumb{width:100%}
+.upload__file__caption{text-align:left}
+.upload__file__caption input[type=text]{width:144px;
 	padding:4px 30px 4px 4px;margin:0;font-size:12px}
 .upload__file__wrap{
-	background:#fff url(upload-spinner.gif) 50% 50% no-repeat;
+	background:gainsboro url(upload-spinner.gif) 50% 50% no-repeat;
 	width:182px;height:182px;text-align:center;overflow:hidden}
-.upload__delete{position:absolute;right:7px;top:7px;color:gray;font-size:20px}
+.upload__delete{position:absolute;right:10px;top:0;color:black;background:rgba(255,255,255,.5);font-size:20px;padding:0 .3rem;display:inline-block}
 .upload__delete input{display:none}
+.upload__file__ext{font-size:20px;padding-top:5rem}
 
 .upload__progress_bar{position:absolute;top:130px;left:10px;width:162px;
 	    background:rgba(255,255,255,0.3);display:none}

@@ -1,1 +1,2 @@
-Storage subnet UI see [https://filesafe.org](https://datura-ai.github.io/storage-app/)
+Storage subnet UI
+https://datura-ai.github.io/storage-app
