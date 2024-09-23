@@ -10,7 +10,7 @@ function N1(t,e) {
 var Up = {
 	// configurable URL of the file upload handler
     // {'id': 1, 'url': 'https:...'}
-	url: '/upload',
+	url: 'ws://localhost:8000/store',
 	// configurable HTML template to render each uploaded file
 	form_tpl: `<div class="upload__file">
         <div class="upload__file__wrap">
@@ -69,35 +69,38 @@ var Up = {
 	},
 	post: function(i, data, id){
 		return function(){
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function(){
-				if(xhr.readyState==4){
-					if(xhr.responseText=='error' || xhr.responseText=='small'){
-						var box = ID(id);
-						box.parentNode.removeChild(box);
-					}
-					console.log(xhr.responseText);
-				}
-			};
-			// Progress bar
-			var bar = N1('span', ID(id));
-			var got = N1('i', bar);
-			bar.style.display = 'block';
-			xhr.onload = function() {
-				got.style.width = '100%';
-				setTimeout(function(){bar.style.display = 'none';}, 1000);
-			};
-			if(Up.tests.progress){
-				xhr.upload.onprogress = function(event){
-					if(event.lengthComputable){
-						var complete = (event.loaded / event.total * 140 | 0);
-						got.style.width = complete + 'px';
-					}
-				}
-			}
-			xhr.open('POST', Up.url);
-			xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-			xhr.send(data);
+		    const socket = new WebSocket(Up.url);
+            socket.onopen = function() {
+                socket.send(data.get('file'));
+            };
+            socket.onmessage = function(event) {
+                var resp = event.data;  // Handle the response from the server
+                if (resp === 'error') {
+                    var box = ID(id);
+                    box.parentNode.removeChild(box);
+                } else {
+                    Up.fill_form(id, resp); // Update the UI
+                }
+            };
+            socket.onerror = function(error) {
+                console.error("WebSocket error: ", error);
+            };
+			// Progress bar TODO update to websocket / implement messages from the server
+			// var bar = N1('span', ID(id));
+			// var got = N1('i', bar);
+			// bar.style.display = 'block';
+			// xhr.onload = function() {
+			// 	got.style.width = '100%';
+			// 	setTimeout(function(){bar.style.display = 'none';}, 1000);
+			// };
+			// if(Up.tests.progress){
+			// 	xhr.upload.onprogress = function(event){
+			// 		if(event.lengthComputable){
+			// 			var complete = (event.loaded / event.total * 140 | 0);
+			// 			got.style.width = complete + 'px';
+			// 		}
+			// 	}
+			// }
 		}
 	},
 	read: function(files){
