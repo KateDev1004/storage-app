@@ -10,7 +10,8 @@ function N1(t,e) {
 var Up = {
 	// configurable URL of the file upload handler
     // {'id': 1, 'url': 'https:...'}
-	url: 'ws://localhost:8000/store',
+	url: 'ws://127.0.0.1:8000/store',
+	user_files_url: 'http://127.0.0.1:8000/files/',
 	// configurable HTML template to render each uploaded file
 	form_tpl: `<div class="upload__file">
         <div class="upload__file__wrap">
@@ -22,9 +23,9 @@ var Up = {
                 &times; <input type="checkbox" name="delete" id="deleteSUFFIX">
             </label>
         </div>
-        <div class="upload__file__caption"><input type="text" name="altSUFFIX"></div>
-        <input type="hidden" name="posSUFFIX">
-        <input type="hidden" name="idSUFFIX">
+        <div class="upload__file__caption"><input type="text" id="altSUFFIX" name="altSUFFIX"></div>
+        <input type="hidden" id="posSUFFIX" name="posSUFFIX">
+        <input type="hidden" id="idSUFFIX" name="idSUFFIX">
     </div>
     `,
 	// device and browser capability tests
@@ -110,7 +111,7 @@ var Up = {
             var data = new FormData();
             data.append('file', file);
             var id = Up.add_form();
-            if (file.type.startsWith('image/')) {
+            if (file.type.startsWith('image/')) {  // display thumbnail
                 var reader = new FileReader();
                 reader.onload = (function(id) {
                     return function(e) {
@@ -119,16 +120,8 @@ var Up = {
                     };
                 })(id);
                 reader.readAsDataURL(file);
-            } else {
-                // For non-image files, display the file extension instead of the thumbnail
-                var ext = file.name.split('.').pop().toUpperCase(); // Get the file extension
-                var img = N1('img', ID(id));
-                img.style.display = 'none';
-                var wrap = ID(id).querySelector('.upload__file__wrap');
-                var extEl = document.createElement('div');
-                extEl.className = 'upload__file__ext';
-                if(file.name.includes('.')) extEl.textContent = '.' + ext; // Show extension
-                wrap.appendChild(extEl);
+            } else {  // or display extension
+                Up.addExt(id, file.name);
             }
             // prefill caption field with the filename
             document.querySelector('#'+id+' .upload__file__caption input').value = file.name;
@@ -137,6 +130,17 @@ var Up = {
 		for(var j=0; j < qs.length; j++){
 			qs[j](); // run requests
 		}
+	},
+	addExt: function(id, fn){
+        // For non-image files, display the file extension instead of the thumbnail
+        var img = N1('img', ID(id));
+        img.style.display = 'none';
+        var ext = fn.split('.').pop().toUpperCase(); // Get the file extension
+        var wrap = ID(id).querySelector('.upload__file__wrap');
+        var extEl = document.createElement('div');
+        extEl.className = 'upload__file__ext';
+        if(fn.includes('.')) extEl.textContent = '.' + ext; // Show extension
+        wrap.appendChild(extEl);
 	},
 	load: function(){
 		var d = ID('droparea'),
@@ -184,26 +188,34 @@ function sortable_uploads(){
 }
 
 
-// Fire upload, when DOM ready
+// Fire when DOM is ready
 document.addEventListener('readystatechange', function(){
     if(document.readyState === 'complete'){
-		Up.load(); // Fire
+        const user_hash = "anonymous";  // TODO set user_hash from wallet
+		Up.load();
 		sortable_uploads();
+		fetchUserFiles(user_hash);  // Fetch and display already uploaded files
 	}
 }, false);
 
-
-function handleDelete() {
-    var deleteButtons = document.querySelectorAll('.upload__delete input[name="delete"]');
-
-    deleteButtons.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            if (this.checked) {
-                var fileDiv = this.closest('.upload__file');
-                fileDiv.parentNode.removeChild(fileDiv);
-                // Additional logic for deleting the file from the server can be added here
-            }
+async function fetchUserFiles(user_hash) {
+    try {
+        const response = await fetch(Up.user_files_url+user_hash);
+        if (!response.ok) { throw new Error("Failed to fetch files."); }
+        const files = await response.json();
+        files.forEach(file => {
+            displayFile(file);
         });
-    });
+    } catch (error) {
+        console.error("Error fetching files:", error);
+    }
 }
 
+function displayFile(file) {
+    var id = Up.add_form();
+    Up.addExt(id, '.encrypted'); // TODO show decrypted extension or thumbnail and caption
+    // var img = N1('img', ID(id));
+    // img.src = file.url || "spinner.gif";
+    ID(id).value = file.id;
+    ID(id.replace('id', 'alt')).value = file.file_hash;
+}
