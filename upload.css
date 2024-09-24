@@ -14,11 +14,12 @@
 .upload__delete{position:absolute;right:11px;top:1px;color:black;background:rgba(255,255,255,.5);font-size:20px;padding:0 .3rem;display:inline-block}
 .upload__delete input{display:none}
 .upload__file__ext{font-size:20px;padding-top:5rem;background:white}
-/*
-.upload__progress_bar{position:absolute;top:130px;left:10px;width:162px;
-	    background:rgba(255,255,255,0.3);display:none}
-.upload__progress_bar,
-.upload__progress_bar i{height:5px;border:1px solid #aaa}
-.upload__progress_bar i{border-width:0 1px 0 0;
-	background:#ddf0ff;display:block;width:0}
-*/
+
+dialog{border:1px solid gray;border-radius:2px;padding:1.5rem}
+dialog p{margin-top:0}
+dialog a{outline:none}
+dialog::backdrop{background-color:rgba(0,0,0,0.6)}
+dialog #login_shut{position:absolute;right:0;top:0;background:none;border:none;font-size:1.5rem;cursor:pointer}
+dialog #login_error{color:#c00;padding-top:.3rem}
+dialog input{font-size:12px}
+#logout{display:none}

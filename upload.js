@@ -1,10 +1,6 @@
 // Utilities
-function ID(id) {
-  return document.getElementById(id);
-}
-function N1(t,e) {
-  return e.getElementsByTagName(t)[0];
-}
+function ID(id) { return document.getElementById(id); }
+function N1(t,e) { return e.getElementsByTagName(t)[0]; }
 
 // Upload class
 var Up = {
@@ -86,22 +82,6 @@ var Up = {
             socket.onerror = function(error) {
                 console.error("WebSocket error: ", error);
             };
-			// Progress bar TODO update to websocket / implement messages from the server
-			// var bar = N1('span', ID(id));
-			// var got = N1('i', bar);
-			// bar.style.display = 'block';
-			// xhr.onload = function() {
-			// 	got.style.width = '100%';
-			// 	setTimeout(function(){bar.style.display = 'none';}, 1000);
-			// };
-			// if(Up.tests.progress){
-			// 	xhr.upload.onprogress = function(event){
-			// 		if(event.lengthComputable){
-			// 			var complete = (event.loaded / event.total * 140 | 0);
-			// 			got.style.width = complete + 'px';
-			// 		}
-			// 	}
-			// }
 		}
 	},
 	read: function(files){
@@ -191,7 +171,7 @@ function sortable_uploads(){
 // Fire when DOM is ready
 document.addEventListener('readystatechange', function(){
     if(document.readyState === 'complete'){
-        const user_hash = "anonymous";  // TODO set user_hash from wallet
+        const user_hash = localStorage.getItem('user_sha');
 		Up.load();
 		sortable_uploads();
 		fetchUserFiles(user_hash);  // Fetch and display already uploaded files

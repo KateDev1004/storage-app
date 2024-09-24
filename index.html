@@ -20,9 +20,10 @@
     <header>
         <a class="brand" href="#">
             🔐 File Safe</a>
-        <span class="login">login with
+        <span class="login" id="login_prompt">login with
             <img src="https://docs.bittensor.com/img/logo.svg" alt="τ" width="9" height="9" />
-            <a href="https://bittensor.com/wallet" target="_blank">Bittensor wallet</a></span>
+            <a href="#login" id="login_open">Bittensor wallet</a></span>
+        <a href="#logout" id="logout">logout</a>
     </header>
     <main>
         <form id="upload_form" enctype="multipart/form-data" action="#" method="post">
@@ -38,18 +39,23 @@
                     </label>
                 </div>
             </div>
-            <div id="upload_list">
-                <!-- Uploaded files will be shown here
-                <figure>
-                    <a href="{{ f.url }}"><img src="{{ thumb }}" alt="{{ f.alt }}" /></a>
-                    <figcaption>{{ f.alt }}</figcaption>
-                </figure>-->
-            </div>
+            <div id="upload_list"></div>
         </div>
         </form>
     </main>
 
+    <dialog id="login_dialog">
+        <p>Paste public key copied from your<br>
+            <a href="https://bittensor.com/wallet" target="_blank">Bittensor wallet</a>
+            or enter a username.</p>
+        <input type="text" id="user_sha" placeholder="Bittensor key or Username" size="48" />
+        <button id="login_save">Save</button>
+        <button id="login_shut">&times;</button>
+        <div id="login_error"></div>
+    </dialog>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
     <script src="upload.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
