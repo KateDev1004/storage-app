@@ -1,0 +1,135 @@
+.hero-section {
+  background-image: url("/public/assets/images/hero.png");
+  background-size: cover;
+  background-position: center;
+  padding: 200px 0 0 0;
+  color: white;
+}
+
+.hero-content h1 {
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.79);
+}
+
+.hero-content p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-content h1 span {
+  color: #00e0c7;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.unlock-btn {
+  background-image: url("/public/assets/images/unlock.png");
+  background-size: cover;
+  background-position: center;
+  height: 69px;
+  width: 416px;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.unlimited-btn {
+  background-image: url("/public/assets/images/unlimited.png");
+  background-size: cover;
+  background-position: center;
+  height: 69px;
+  width: 416px;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.explore-link {
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  margin-top: 126px;
+}
+
+.explore-link:hover {
+  color: #00e0c7;
+}
+
+.phone-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.title {
+  font-size: 98px;
+  font-weight: 400;
+}
+
+.title span {
+  font-weight: 600;
+}
+
+@media (max-width: 1468px) {
+  .hero-content .title {
+    font-size: 80px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+  }
+
+  .explore-link {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-content .title {
+    font-size: 60px;
+  }
+
+  .hero-section {
+    padding-top: 150px;
+  }
+}
+
+@media (max-width: 990px) {
+  .hero-image {
+    background-image: url("/public/assets/images/mobile-hero.png");
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    margin-top: -500px !important;
+    opacity: 0.06;
+  }
+
+  .hero-image img {
+    display: none;
+  }
+
+  .hero-section {
+    text-align: center;
+  }
+
+  .cta-buttons {
+    align-items: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 440px) {
+  .unlock-btn,
+  .unlimited-btn {
+    width: 300px;
+    height: 50px;
+    font-size: 17px !important;
+  }
+  .hero-content .title {
+    font-size: 40px;
+  }
+
+  .logo span {
+    padding-right: 0 !important;
+  }
+}

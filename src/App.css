@@ -1,45 +1,7 @@
-/* Example basic styles */
-body {
-  font-family: "Arial", sans-serif;
-  margin: 0;
-  padding: 0;
+a {
+  text-decoration: none !important;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #2e2e2e;
-  color: white;
-}
-
-.hero-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 50px;
-  background-color: #f5f5f5;
-}
-
-.integration-section {
-  padding: 50px;
-  background-color: #ffffff;
-}
-
-.features-section {
-  padding: 50px;
-  background-color: #f0f0f0;
-}
-
-.testimonials-section {
-  padding: 50px;
-  background-color: #ffffff;
-}
-
-.footer {
-  padding: 20px;
-  background-color: #2e2e2e;
-  color: white;
-  display: flex;
-  justify-content: space-between;
+.green-blue {
+  color: #00e0c7;
 }
