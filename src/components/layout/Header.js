@@ -32,7 +32,7 @@ const Header = () => {
           <a href="/" className="logo navbar-brand d-flex align-items-center">
             <img
               src="assets/images/logo.png"
-              alt="WindBlow Logo"
+              alt="FileSafe Logo"
               className="me-2"
             />
             <span className="text-white h3 mb-0 ps-3 pe-5">
