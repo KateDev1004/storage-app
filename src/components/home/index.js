@@ -2,7 +2,8 @@ import React from "react";
 import HeroSection from "./HeroSection";
 import Tools from "./Tools";
 import Features from "./Features";
-import Testimonials from "./Testominals";
+import Testimonials from "./Testimonials";
+import Upgrade from "./Upgrade";
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <Tools />
       <Features />
       <Testimonials />
+      <Upgrade />
     </div>
   );
 }
