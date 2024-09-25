@@ -1,0 +1,122 @@
+.upgrade .heading {
+  font-size: 4.5rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.93);
+}
+
+.upgrade {
+  padding-top: 100px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.upgrade-content {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* General container styling */
+.input-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.3
+  ); /* Dark background similar to the image */
+  padding: 5px;
+  border-radius: 30px; /* Rounded corners for the whole container */
+  width: 550px; /* Adjust width as needed */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-bottom: 120px;
+  margin-top: 100px;
+}
+
+/* Input field styling */
+.input-field {
+  flex-grow: 1; /* Allow the input field to take up available space */
+  border: none;
+  outline: none;
+  background-color: transparent; /* Transparent background */
+  color: #fff; /* White text */
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 30px;
+}
+
+.input-field::placeholder {
+  color: #c3c3c3; /* Placeholder color */
+  opacity: 0.9; /* Slight transparency for placeholder */
+}
+
+/* Submit button styling */
+.submit-btn {
+  background-color: #30d5c8; /* Teal background color for the button */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px; /* Same rounded style */
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #22b8a8; /* Darker teal on hover */
+}
+
+.submit-btn:focus {
+  outline: none;
+}
+
+@media (max-width: 1400px) {
+  .upgrade .heading {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .upgrade .heading {
+    font-size: 3rem;
+  }
+
+  .input-container {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 998px) {
+  .upgrade img {
+    opacity: 0.06;
+  }
+
+  .upgrade-main-container {
+    flex-direction: column;
+  }
+
+  .upgrade .image {
+    margin-top: -400px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .upgrade-content {
+    text-align: center;
+  }
+  .upgrade .image {
+    margin-top: -550px !important;
+  }
+  .input-container {
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 460px) {
+  .input-container {
+    margin-top: 0;
+    margin-bottom: 200px;
+  }
+}
