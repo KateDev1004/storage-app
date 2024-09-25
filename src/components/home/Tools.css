@@ -1,0 +1,36 @@
+.tools {
+  padding-top: 130px;
+}
+
+.tool-card {
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+  border: 0;
+}
+
+.tool-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tools .heading h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.tools .heading p {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+@media (max-width: 770px) {
+  .tools .heading h1 {
+    font-size: 2.5rem;
+  }
+
+  .tools .heading p {
+    font-size: 16px;
+    padding-top: 10px;
+  }
+}
