@@ -1,6 +1,6 @@
 import React from "react";
 import HeroSection from "./HeroSection";
-import Integration from "./Integration";
+import Tools from "./Tools";
 import Features from "./Features";
 import Testimonials from "./Testominals";
 
@@ -8,7 +8,7 @@ function Home() {
   return (
     <div className="home">
       <HeroSection />
-      <Integration />
+      <Tools />
       <Features />
       <Testimonials />
     </div>
