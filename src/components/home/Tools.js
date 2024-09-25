@@ -11,25 +11,25 @@ const tools = [
   {
     name: "Google Workspace",
     description:
-      "Create, edit, and share Google Docs, Sheets, and Slides in Windblow.",
+      "Create, edit, and share Google Docs, Sheets, and Slides in FileSafe.",
     imgSrc: "assets/images/g-drive.png",
   },
   {
     name: "Microsoft Office",
     description:
-      "Easily access, edit, and share Office docs online in Windblow anytime.",
+      "Easily access, edit, and share Office docs online in FileSafe anytime.",
     imgSrc: "assets/images/ms-office.png",
   },
   {
     name: "Canvas",
     description:
-      "Upload course files or assignments straight from Windblow to Canvas.",
+      "Upload course files or assignments straight from FileSafe to Canvas.",
     imgSrc: "assets/images/canvas.png",
   },
   {
     name: "Slack",
     description:
-      "Bring Slack conversations and Windblow content together to keep teams in sync.",
+      "Bring Slack conversations and FileSafe content together to keep teams in sync.",
     imgSrc: "assets/images/slack.png",
   },
   {

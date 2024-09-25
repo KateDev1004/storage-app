@@ -13,7 +13,7 @@ const HeroSection = () => {
             </h1>
             <p className="mt-3 lead">
               Easy to use, reliable, private, and secure. It’s no wonder
-              WindBlow is the choice for storing and sharing your most important
+              FileSafe is the choice for storing and sharing your most important
               files.
             </p>
             <div className="mt-5 pt-3 cta-buttons">

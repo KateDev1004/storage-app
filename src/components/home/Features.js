@@ -31,10 +31,10 @@ const Features = () => {
     <div className="features container mt-5">
       <div className="heading row mb-5 mx-auto text-center">
         <h1 className="col-12">
-          Join over 700 million registered users who trust Windblow
+          Join over 700 million registered users who trust FileSafe
         </h1>
         <p className="col-12 mt-3">
-          Windblow brings everything—traditional files, cloud content, and web
+          FileSafe brings everything—traditional files, cloud content, and web
           shortcuts—together in one place.
         </p>
       </div>

@@ -11,7 +11,7 @@ const testimonialsData = [
   },
   {
     quote:
-      "Windblow helped us streamline our processes and saved us a ton of time!",
+      "FileSafe helped us streamline our processes and saved us a ton of time!",
     author: "Emma Watson",
     title: "CEO of TimeSavvy Solutions",
     img: "assets/images/avatar2.png",
